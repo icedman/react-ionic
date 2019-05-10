@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 // push, reveal, push, overlay
 
-export default class Menu extends Component {
+class Menu extends Component {
   render () {
     return <Fragment>
         <ion-menu name="menu" type="push">
@@ -62,3 +62,5 @@ export default class Menu extends Component {
       </Fragment>
   }
 }
+
+export default withRouter(Menu)

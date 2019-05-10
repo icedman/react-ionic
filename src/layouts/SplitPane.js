@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-export default class Menu extends Component {
+class Split extends Component {
   render () {
     return <Fragment>
       <ion-split-pane when="sm">
@@ -19,23 +19,19 @@ export default class Menu extends Component {
                   Navigate
                 </ion-list-header>
                 <ion-menu-toggle auto-hide="false">
-                  <Link to="/">
-                    <ion-item button>
+                    <ion-item>
                       <ion-icon slot="start" name="home"></ion-icon>
                       <ion-label>
                         Home
                       </ion-label>
                     </ion-item>
-                  </Link>
                 </ion-menu-toggle>
-                <Link to="/form">
                   <ion-item button>
                     <ion-icon slot="start" name="another"></ion-icon>
                     <ion-label>
                       Another Page
                     </ion-label>
                   </ion-item>
-                </Link>
               </ion-list>
             </ion-content>
           </div>
@@ -62,3 +58,5 @@ export default class Menu extends Component {
       </Fragment>
   }
 }
+
+export default withRouter(Split)

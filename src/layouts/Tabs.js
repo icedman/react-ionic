@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-export default class Menu extends Component {
+class Tabs extends Component {
 
   tabClicked(t) {
-    console.log(t)
+    this.props.history.push(t);
   }
+
   render () {
     return <Fragment>
       <ion-header>
@@ -34,13 +35,13 @@ export default class Menu extends Component {
         <ion-tab tab="settings" style={{display:'none'}}></ion-tab>
 
         <ion-tab-bar slot="bottom">
-          <ion-tab-button tab="home" onClick={()=>{this.tabClicked('/tab1')}}>
+          <ion-tab-button tab="home" onClick={()=>{this.tabClicked('/routes')}}>
             <ion-label>Home</ion-label>
             <ion-icon name="home"></ion-icon>
             <ion-badge>6</ion-badge>
           </ion-tab-button>
 
-          <ion-tab-button tab="settings" onClick={()=>{this.tabClicked('/tab2')}}>
+          <ion-tab-button tab="settings" onClick={()=>{this.tabClicked('/form')}}>
             <ion-label>Settings</ion-label>
             <ion-icon name="globe"></ion-icon>
           </ion-tab-button>
@@ -50,3 +51,5 @@ export default class Menu extends Component {
       </Fragment>
   }
 }
+
+export default withRouter(Tabs)

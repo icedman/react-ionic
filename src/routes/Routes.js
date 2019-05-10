@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { withRouter, Route, Link } from 'react-router-dom';
 import SampleRoutes from '../pages/routes.js';
 
-import HeaderLayout from '../layouts/Header';
+import Header from '../layouts/Header';
+import Tabs from '../layouts/Tabs';
 
 function prefixRoutePath(path, routes) {
     return routes.map(r => {
@@ -31,7 +32,16 @@ const routes = [
         path: '/',
         title: 'List Routes',
         component: ListRoutes,
-        layout: HeaderLayout,
+        layout: Header,
+        permissions: {
+            authenticated: [ 'all' ]
+        }
+    },
+    {
+        path: '/routes',
+        title: 'List Routes',
+        component: ListRoutes,
+        layout: Tabs,
         permissions: {
             authenticated: [ 'all' ]
         }

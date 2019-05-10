@@ -176,8 +176,8 @@ class FormPage extends Component {
           name="searched"
           debounce={500}
         ></ion-searchbar>
-        searching for { searched }...
         <ion-list>
+          <ion-item>searching for { searched }...</ion-item>
           <ion-item>
             <ion-icon name="logo-twitter"></ion-icon>
             Followers
