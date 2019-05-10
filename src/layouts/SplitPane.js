@@ -41,7 +41,7 @@ export default class Menu extends Component {
           </div>
         </ion-menu>
 
-        <div class="ion-page" main="true">
+        <div className="ion-page" main="true">
           <ion-header>
             <ion-toolbar>
               <ion-buttons slot="start">

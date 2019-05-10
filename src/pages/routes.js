@@ -14,6 +14,36 @@ const Routes = [
         title: 'Form',
         component: Form,
         layout: Tabs
+    },
+    {
+        path: '/menu',
+        title: 'Form',
+        component: Form,
+        layout: Menu
+    },
+    {
+        path: '/full',
+        title: 'Form',
+        component: Form,
+        layout: Full
+    },
+    {
+        path: '/header',
+        title: 'Form',
+        component: Form,
+        layout: Header
+    },
+    {
+        path: '/tabs',
+        title: 'Form',
+        component: Form,
+        layout: Tabs
+    },
+    {
+        path: '/split',
+        title: 'Form',
+        component: Form,
+        layout: SplitPane
     }
 ];
 

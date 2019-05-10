@@ -28,7 +28,7 @@ function ListRoutes() {
 
 const routes = [
     {
-        path: '/routes',
+        path: '/',
         title: 'List Routes',
         component: ListRoutes,
         layout: HeaderLayout,
