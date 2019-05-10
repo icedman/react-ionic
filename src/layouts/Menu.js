@@ -13,35 +13,27 @@ class Menu extends Component {
                 <ion-title>Menu</ion-title>
               </ion-toolbar>
             </ion-header>
-
             <ion-content>
               <ion-list>
                 <ion-list-header>
                   Navigate
                 </ion-list-header>
-                <ion-menu-toggle auto-hide="false">
-                  <Link to="/">
-                    <ion-item button>
-                      <ion-icon slot="start" name="home"></ion-icon>
-                      <ion-label>
-                        Home
-                      </ion-label>
-                    </ion-item>
-                  </Link>
-                </ion-menu-toggle>
-                <Link to="/form">
+                  <ion-item button>
+                    <ion-icon slot="start" name="home"></ion-icon>
+                    <ion-label>
+                      Home
+                    </ion-label>
+                  </ion-item>
                   <ion-item button>
                     <ion-icon slot="start" name="another"></ion-icon>
                     <ion-label>
                       Another Page
                     </ion-label>
                   </ion-item>
-                </Link>
               </ion-list>
             </ion-content>
           </div>
         </ion-menu>
-
         <div className="ion-page" main="true">
           <ion-header>
             <ion-toolbar>

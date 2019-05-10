@@ -18,14 +18,12 @@ class Split extends Component {
                 <ion-list-header>
                   Navigate
                 </ion-list-header>
-                <ion-menu-toggle auto-hide="false">
-                    <ion-item>
+                    <ion-item button>
                       <ion-icon slot="start" name="home"></ion-icon>
                       <ion-label>
                         Home
                       </ion-label>
                     </ion-item>
-                </ion-menu-toggle>
                   <ion-item button>
                     <ion-icon slot="start" name="another"></ion-icon>
                     <ion-label>

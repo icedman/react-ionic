@@ -5,7 +5,17 @@ class FormPage extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      searched: null,
+      toggled: true,
+      checkboxed: true,
+      dated: null,
+      msg: 'hello',
+      texted: null,
+      radioed: 'go',
+      ranged: 50,
+      selected: 'snes'
+    }
   }
 
   componentDidMount () {
@@ -254,7 +264,7 @@ class FormPage extends Component {
         </ion-radio-group>
         <ion-item>
           <ion-label>Range [{ ranged }]</ion-label>
-          <ion-range value="ranged" 
+          <ion-range value={ranged}
             name="ranged"
             >
             <ion-icon size="small" name="sunny" slot="start"></ion-icon>
