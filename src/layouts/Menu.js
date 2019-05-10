@@ -20,23 +20,23 @@ export default class Menu extends Component {
                   Navigate
                 </ion-list-header>
                 <ion-menu-toggle auto-hide="false">
-                  <router-link to="/">
+                  <Link to="/">
                     <ion-item button>
                       <ion-icon slot="start" name="home"></ion-icon>
                       <ion-label>
                         Home
                       </ion-label>
                     </ion-item>
-                  </router-link>
+                  </Link>
                 </ion-menu-toggle>
-                <router-link to="/another">
+                <Link to="/form">
                   <ion-item button>
                     <ion-icon slot="start" name="another"></ion-icon>
                     <ion-label>
                       Another Page
                     </ion-label>
                   </ion-item>
-                </router-link>
+                </Link>
               </ion-list>
             </ion-content>
           </div>
