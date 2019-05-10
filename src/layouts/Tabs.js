@@ -24,7 +24,7 @@ export default class Menu extends Component {
       </ion-header>
 
       <ion-tabs>
-        <div className="ion-page">
+        <div className="ion-page" style={{marginTop: '60px'}}>
           <ion-content>
             {this.props.content}
           </ion-content>

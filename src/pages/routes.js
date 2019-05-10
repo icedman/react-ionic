@@ -17,31 +17,31 @@ const Routes = [
     },
     {
         path: '/menu',
-        title: 'Form',
+        title: 'Menu',
         component: Form,
         layout: Menu
     },
     {
         path: '/full',
-        title: 'Form',
+        title: 'Full',
         component: Form,
         layout: Full
     },
     {
         path: '/header',
-        title: 'Form',
+        title: 'Header',
         component: Form,
         layout: Header
     },
     {
         path: '/tabs',
-        title: 'Form',
+        title: 'Tabs',
         component: Form,
         layout: Tabs
     },
     {
         path: '/split',
-        title: 'Form',
+        title: 'Split',
         component: Form,
         layout: SplitPane
     }
