@@ -9,6 +9,13 @@ class FormPage extends Component {
   }
 
   componentDidMount () {
+
+    this.$ionic = {
+      alert: document.querySelector("ion-alert-controller"),
+      actionSheet: document.querySelector("ion-action-sheet-controller"),
+      toast: document.querySelector("ion-toast-controller")
+    }
+
     // attach event listeners
     let toggles = document.querySelectorAll('ion-toggle, ion-checkbox')
     Array.prototype.forEach.call(toggles, (toggle) => {
@@ -50,13 +57,82 @@ class FormPage extends Component {
     this.props.history.push('/menu');
   }
 
-  sampleAlert () {
+  async sampleAlert() {
+    await this.$ionic.alert.componentOnReady();
+    this.$ionic.alert
+      .create({
+        header: "Alert",
+        subHeader: "Subtitle",
+        message: "This is an alert message.",
+        buttons: ["OK"]
+      })
+      .then(a => {
+        a.present();
+      });
   }
 
-  sampleToast () {
+  async sampleActionSheet() {
+    await this.$ionic.actionSheet.componentOnReady();
+    this.$ionic.actionSheet
+      .create({
+        header: "Albums",
+        buttons: [
+          {
+            text: "Delete",
+            role: "destructive",
+            icon: "trash",
+            handler: () => {
+              console.log("Delete clicked");
+            }
+          },
+          {
+            text: "Share",
+            icon: "share",
+            handler: () => {
+              console.log("Share clicked");
+            }
+          },
+          {
+            text: "Play (open modal)",
+            icon: "arrow-dropright-circle",
+            handler: () => {
+              console.log("Play clicked");
+            }
+          },
+          {
+            text: "Favorite",
+            icon: "heart",
+            handler: () => {
+              console.log("Favorite clicked");
+            }
+          },
+          {
+            text: "Cancel",
+            icon: "close",
+            role: "cancel",
+            handler: () => {
+              console.log("Cancel clicked");
+            }
+          }
+        ]
+      })
+      .then(a => {
+        a.present();
+      });
   }
 
-  sampleActionSheet () {
+  async sampleToast() {
+    await this.$ionic.toast.componentOnReady();
+    this.$ionic.toast
+      .create({
+        message: "Click to Close",
+        showCloseButton: true,
+        position: "top",
+        closeButtonText: "Done"
+      })
+      .then(a => {
+        a.present();
+      });
   }
 
   render () {
