@@ -21,17 +21,17 @@ class FormPage extends Component {
     Array.prototype.forEach.call(toggles, (toggle) => {
       toggle.addEventListener('ionChange', (evt) => {
         let state = {}
-        state[evt.target.model || evt.target.name] = evt.target.checked
+        state[evt.target.name || evt.target.attributes.name.value] = evt.target.checked
         this.setState(state);
       })
     })
 
     let inputs = document.querySelectorAll(
-      'ion-input, ion-textarea, ion-datetime, ion-radio-group, ion-range, ion-select')
+      'ion-input, ion-textarea, ion-datetime, ion-radio-group, ion-range, ion-select, ion-searchbar')
     Array.prototype.forEach.call(inputs, (input) => {
       input.addEventListener('ionChange', (evt) => {
         let state = {}
-        state[evt.target.model || evt.target.name] = evt.target.value
+        state[evt.target.name || evt.target.attributes.name.value] = evt.target.value
         this.setState(state);
       })
     })
@@ -172,9 +172,9 @@ class FormPage extends Component {
           </ion-item>
         </ion-list>
         <ion-searchbar
-          value="searched"
-          onIonChange="searched = $event.target.value"
-          debounce="500"
+          value={searched}
+          name="searched"
+          debounce={500}
         ></ion-searchbar>
         searching for { searched }...
         <ion-list>
