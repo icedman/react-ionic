@@ -1,6 +1,35 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 
+class withIonChange extends Component {
+  constructor(props) {
+    super(props);
+    this.componentRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.componentRef.current.addEventListener('ionChange', (evt)=>{
+      if (this.props.ionChange) {
+        this.props.ionChange(evt);
+      }
+    })
+  }
+
+  render () {
+    const IonComponent = this.component
+    return <IonComponent ref={this.componentRef} {...this.props}/>
+  }
+}
+
+class IonCheckbox extends withIonChange { component = 'ion-checkbox' }
+class IonToggle extends withIonChange { component = 'ion-toggle' }
+class IonInput extends withIonChange { component = 'ion-input' }
+class IonTextarea extends withIonChange { component = 'ion-textarea' }
+class IonRadioGroup extends withIonChange { component = 'ion-radio-group' }
+class IonRange extends withIonChange { component = 'ion-range' }
+class IonSelect extends withIonChange { component = 'ion-select' }
+class IonSearchBar extends withIonChange { component = 'ion-searchbar' }
+
 class FormPage extends Component {
 
   constructor(props) {
@@ -36,8 +65,7 @@ class FormPage extends Component {
       })
     })
 
-    let inputs = document.querySelectorAll(
-      'ion-input, ion-textarea, ion-datetime, ion-radio-group, ion-range, ion-select, ion-searchbar')
+    let inputs = document.querySelectorAll('ion-input, ion-textarea, ion-datetime, ion-radio-group, ion-range, ion-select, ion-searchbar')
     Array.prototype.forEach.call(inputs, (input) => {
       input.addEventListener('ionChange', (evt) => {
         let state = {}
@@ -209,12 +237,29 @@ class FormPage extends Component {
             ></ion-toggle>
           </ion-item>
           <ion-item>
+            <ion-label>Toggle [{toggled ? 'true' : 'false'}]</ion-label>
+            <IonToggle
+              checked={toggled}
+              ionChange={(evt)=>{this.setState({toggled:evt.target.checked})}}
+              name="toggled"
+            ></IonToggle>
+          </ion-item>
+          <ion-item>
             <ion-label>Checkbox [{checkboxed ? 'true' : 'false'}]</ion-label>
             <ion-checkbox
               color="dark"
               checked={checkboxed}
               name="checkboxed"
             ></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Checkbox [{checkboxed ? 'true' : 'false'}]</ion-label>
+            <IonCheckbox
+              color="dark"
+              checked={checkboxed}
+              ionChange={(evt)=>{this.setState({checkboxed:evt.target.checked})}}
+              name="checkboxed"
+            ></IonCheckbox>
           </ion-item>
           <ion-item>
             <ion-label>Date/Time [{ this.state.dated }]</ion-label>
