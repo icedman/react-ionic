@@ -42,7 +42,8 @@ class IonSearchBar extends withIonChange { component = 'ion-searchbar' }
 
 /* add eventlistener at render */
 function withEventListener(elm, handler) {
-  if (elm) {
+  if (elm && !elm.ionChange) {
+    elm.ionChange = handler
     elm.addEventListener('ionChange', handler)
   }
   return elm;
@@ -74,31 +75,27 @@ class FormPage extends Component {
     }
 
     // manually attach event listeners
+    /*
     let toggles = document.querySelectorAll('ion-toggle, ion-checkbox')
     Array.prototype.forEach.call(toggles, (toggle) => {
-      if (toggle.classList.contains('skipListener')) {
-        console.log('.skip...');
-        return;
-      }
-      toggle.addEventListener('ionChange', (evt) => {
+      toggle.ionChange = (evt) => {
         let state = {}
         state[evt.target.name || evt.target.attributes.name.value] = evt.target.checked
         this.setState(state);
-      })
+      }
+      toggle.addEventListener('ionChange', toggle.ionChange)
     })
 
     let inputs = document.querySelectorAll('ion-input, ion-textarea, ion-datetime, ion-radio-group, ion-range, ion-select, ion-searchbar')
     Array.prototype.forEach.call(inputs, (input) => {
-      if (input.classList.contains('skipListener')) {
-        console.log('.skip...');
-        return;
-      }
-      input.addEventListener('ionChange', (evt) => {
+      input.ionChange = (evt) => {
         let state = {}
         state[evt.target.name || evt.target.attributes.name.value] = evt.target.value
         this.setState(state);
-      })
+      }
+      input.addEventListener('ionChange', input.ionChange)
     })
+    */
 
   }
 
@@ -254,38 +251,30 @@ class FormPage extends Component {
               type="text"
               value={msg}
               name="msg"
+              ref={(elm)=>{ return withEventListener(elm,
+                  (evt)=>{this.setState({msg:evt.target.value})}
+              )}}
+
             ></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Toggle [{toggled ? 'true' : 'false'}]</ion-label>
             <ion-toggle
-              className='skipListener'
               checked={toggled}
               name="toggled"
-
               /*
               hacky way of adding an event listener.
               removeEventListener is **probably** not need,
               ionic will take care of freeing the reference when it is unmounted??
               */
-              _ref={(elm)=>{ return withEventListener(elm,
+              ref={(elm)=>{ return withEventListener(elm,
                   (evt)=>{this.setState({toggled:evt.target.checked})}
               )}}
-
-              /*
-              another hacky way of adding an event listener, similar to above
-              */
-              ref={(elm)=>{ if (elm) {
-                elm.addEventListener('ionChange', (evt)=>{
-                  this.setState({toggled:evt.target.checked})})
-              }; return elm; }}
-
             ></ion-toggle>
           </ion-item>
           <ion-item>
             <ion-label>Toggle [{toggled ? 'true' : 'false'}]</ion-label>
             <IonToggle
-              className='skipListener'
               checked={toggled}
               ionChange={(evt)=>{this.setState({toggled:evt.target.checked})}}
               name="toggled"
@@ -296,7 +285,6 @@ class FormPage extends Component {
           <ion-item>
             <ion-label>Checkbox [{checkboxed ? 'true' : 'false'}] .. show this when toggle on</ion-label>
             <IonCheckbox
-              className='skipListener'
               color="dark"
               checked={checkboxed}
               ionChange={(evt)=>{this.setState({checkboxed:evt.target.checked})}}
